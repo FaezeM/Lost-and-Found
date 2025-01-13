@@ -7,60 +7,54 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController {
-    
-    @IBOutlet weak var itemList: UICollectionView!
-    
-    
-    
+class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+ 
     @IBAction func profileButton(_ sender: Any) {
     }
+    
+    private var itemList: UICollectionView?
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: view.frame.width, height: 100)
         
-        layout.itemSize = CGSize(width: 50, height: 50)
+        itemList = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        guard let itemList = itemList else {
+            return
+        } // wrap it for the addSubView (it should never be optional because we signed it in the last line
         
-        itemList.collectionViewLayout = layout
+        itemList.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         
-        itemList.register(itemListCollectionViewCell.nib(), forCellWithReuseIdentifier: itemListCollectionViewCell.identifier)
-
-        itemList.delegate = self
-        itemList.dataSource = self
+        itemList.backgroundColor = view.backgroundColor
+        
+        itemList.dataSource = self // UICollectionViewDataSource protocol needed
+        itemList.delegate = self // UICollectionViewDelegate protocol needed
+        
+        view.addSubview(itemList)
+        itemList.frame = view.bounds
+        
     }
     
-    
 
-
-}
-
-extension CollectionViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
         
-        print("tapped")
-    }
-}
-
-extension CollectionViewController: UICollectionViewDataSource {
+    // The next 2 funcs is because [Collection]ViewController does not
+    // conform to UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return 30
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemListCollectionViewCell.identifier, for: indexPath) as! itemListCollectionViewCell
-        
-        cell.configure(with: UIImage(named: "Image")!)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath)
         return cell
     }
-    
-}
+        
 
-extension CollectionViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
-    }
+        
+        
 }

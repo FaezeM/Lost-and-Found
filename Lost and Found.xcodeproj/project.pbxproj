@@ -12,13 +12,11 @@
 		D91B5BE02C2056F30021E196 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B5BDF2C2056F30021E196 /* ViewController.swift */; };
 		D91B5BE32C2056F30021E196 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91B5BE12C2056F30021E196 /* Main.storyboard */; };
 		D91B5BE52C2057050021E196 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D91B5BE42C2057050021E196 /* Assets.xcassets */; };
-		D91B5BE82C2057050021E196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91B5BE62C2057050021E196 /* LaunchScreen.storyboard */; };
 		D91B5BF32C2057060021E196 /* Lost_and_FoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B5BF22C2057060021E196 /* Lost_and_FoundTests.swift */; };
 		D91B5BFD2C2057060021E196 /* Lost_and_FoundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B5BFC2C2057060021E196 /* Lost_and_FoundUITests.swift */; };
 		D91B5BFF2C2057060021E196 /* Lost_and_FoundUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91B5BFE2C2057060021E196 /* Lost_and_FoundUITestsLaunchTests.swift */; };
 		D96B924B2CFDE79A00AC92F1 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96B924A2CFDE79A00AC92F1 /* CollectionViewController.swift */; };
-		D96B924E2CFDF19800AC92F1 /* itemListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96B924D2CFDF19800AC92F1 /* itemListCollectionViewCell.xib */; };
-		D96B924F2CFDF19800AC92F1 /* itemListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96B924C2CFDF19800AC92F1 /* itemListCollectionViewCell.swift */; };
+		D9BB0F6D2D3530B200C1024B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB0F6C2D3530B200C1024B /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +43,6 @@
 		D91B5BDF2C2056F30021E196 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D91B5BE22C2056F30021E196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D91B5BE42C2057050021E196 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D91B5BE72C2057050021E196 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D91B5BE92C2057050021E196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D91B5BEE2C2057060021E196 /* Lost and FoundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lost and FoundTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91B5BF22C2057060021E196 /* Lost_and_FoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lost_and_FoundTests.swift; sourceTree = "<group>"; };
@@ -53,8 +50,7 @@
 		D91B5BFC2C2057060021E196 /* Lost_and_FoundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lost_and_FoundUITests.swift; sourceTree = "<group>"; };
 		D91B5BFE2C2057060021E196 /* Lost_and_FoundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lost_and_FoundUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D96B924A2CFDE79A00AC92F1 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		D96B924C2CFDF19800AC92F1 /* itemListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemListCollectionViewCell.swift; sourceTree = "<group>"; };
-		D96B924D2CFDF19800AC92F1 /* itemListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = itemListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D9BB0F6C2D3530B200C1024B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +105,10 @@
 				D91B5BDD2C2056F30021E196 /* SceneDelegate.swift */,
 				D91B5BDF2C2056F30021E196 /* ViewController.swift */,
 				D96B924A2CFDE79A00AC92F1 /* CollectionViewController.swift */,
+				D9BB0F6C2D3530B200C1024B /* CustomCollectionViewCell.swift */,
 				D91B5BE12C2056F30021E196 /* Main.storyboard */,
 				D91B5BE42C2057050021E196 /* Assets.xcassets */,
-				D91B5BE62C2057050021E196 /* LaunchScreen.storyboard */,
 				D91B5BE92C2057050021E196 /* Info.plist */,
-				D96B924C2CFDF19800AC92F1 /* itemListCollectionViewCell.swift */,
-				D96B924D2CFDF19800AC92F1 /* itemListCollectionViewCell.xib */,
 			);
 			path = "Lost and Found";
 			sourceTree = "<group>";
@@ -240,8 +234,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D91B5BE82C2057050021E196 /* LaunchScreen.storyboard in Resources */,
-				D96B924E2CFDF19800AC92F1 /* itemListCollectionViewCell.xib in Resources */,
 				D91B5BE52C2057050021E196 /* Assets.xcassets in Resources */,
 				D91B5BE32C2056F30021E196 /* Main.storyboard in Resources */,
 			);
@@ -269,7 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D96B924B2CFDE79A00AC92F1 /* CollectionViewController.swift in Sources */,
-				D96B924F2CFDF19800AC92F1 /* itemListCollectionViewCell.swift in Sources */,
+				D9BB0F6D2D3530B200C1024B /* CustomCollectionViewCell.swift in Sources */,
 				D91B5BE02C2056F30021E196 /* ViewController.swift in Sources */,
 				D91B5BDC2C2056F30021E196 /* AppDelegate.swift in Sources */,
 				D91B5BDE2C2056F30021E196 /* SceneDelegate.swift in Sources */,
@@ -315,14 +307,6 @@
 				D91B5BE22C2056F30021E196 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D91B5BE62C2057050021E196 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D91B5BE72C2057050021E196 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
