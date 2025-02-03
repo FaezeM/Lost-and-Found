@@ -45,6 +45,17 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(text: String, imageName: String) {
+        label.text = text
+        image.image = UIImage(named: imageName)
+    }
+    
+    override func prepareForReuse() { //nil the properties for different cells
+        super.prepareForReuse()
+        label.text = nil
+        image.image = nil
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+
     private let nameTextView: UITextView = {
         let nameTextView = UITextView()
         nameTextView.font = .systemFont(ofSize: 14)
@@ -69,6 +70,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        let sizeThatFitsContent = nameTextView.sizeThatFits(CGSize(width: nameTextView.frame.width, height: .greatestFiniteMagnitude))
+        
         // constraints
         editButton.translatesAutoresizingMaskIntoConstraints = false
         nameTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +84,7 @@ class ViewController: UIViewController {
             nameTextView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             nameTextView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -100),
             nameTextView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
-            nameTextView.heightAnchor.constraint(equalTo: nameTextView.widthAnchor, multiplier: 0.15),
+            nameTextView.heightAnchor.constraint(equalToConstant: nameTextView.sizeThatFits(CGSize(width: nameTextView.frame.width, height: .greatestFiniteMagnitude)).height),
             
             // surname constraints
             surnameTextView.topAnchor.constraint(equalTo: nameTextView.bottomAnchor, constant: 10),

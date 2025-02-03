@@ -13,7 +13,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath)
+        // not optional
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(text: "cat\(indexPath.row+1)", imageName: "cat\(indexPath.row%4+1)")
         return cell
     }
     
@@ -24,7 +28,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         // .compact == small
         return traitCollection.verticalSizeClass == .compact ? // if in landscape mode == the height is small
         baseHeight * (UIScreen.main.bounds.width / UIScreen.main.bounds.height) : // normalHeight * (screen width / screen height)
-        baseHeight //
+        baseHeight
     }
     
     private let profileButton: UIButton = {
