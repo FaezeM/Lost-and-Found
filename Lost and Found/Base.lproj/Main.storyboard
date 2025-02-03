@@ -9,25 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="yZ6-Qx-zQr">
             <objects>
-                <viewController id="hUE-ve-8Zd" customClass="CollectionViewController" customModule="Lost_and_Found" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hUE-ve-8Zd" customClass="TableViewController" customModule="Lost_and_Found" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yX-yv-gPU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="PGr-kp-6to" userLabel="Profile Button">
-                                <rect key="frame" x="287" y="83" width="106" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Profile"/>
-                                <connections>
-                                    <action selector="profileButton:" destination="hUE-ve-8Zd" eventType="touchUpInside" id="NS6-Ex-7cH"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Are-4W-D7p"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="9Uk-ou-Geq"/>
                         <color key="backgroundColor" red="0.87450981139999995" green="0.87843137979999997" blue="0.84313726430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
