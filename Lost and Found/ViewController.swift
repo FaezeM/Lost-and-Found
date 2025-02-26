@@ -70,8 +70,6 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let sizeThatFitsContent = nameTextView.sizeThatFits(CGSize(width: nameTextView.frame.width, height: .greatestFiniteMagnitude))
-        
         // constraints
         editButton.translatesAutoresizingMaskIntoConstraints = false
         nameTextView.translatesAutoresizingMaskIntoConstraints = false

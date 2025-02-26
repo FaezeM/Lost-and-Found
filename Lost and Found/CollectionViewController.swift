@@ -8,8 +8,12 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return Objects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -17,7 +21,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(text: "cat\(indexPath.row+1)", imageName: "cat\(indexPath.row%4+1)")
+        let Object = Objects[indexPath.row]
+        cell.configure(text: Object.name, locName: Object.location, img: Object.image)
         return cell
     }
     
@@ -31,13 +36,30 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         baseHeight
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // it will no longer be highlighted
+        let object = Objects[indexPath.row]
+        let vc = LostObjectViewController(passingItem: object)
+        navigationController?.pushViewController(vc, animated: true)
+
+    }
+    
     private let profileButton: UIButton = {
         let profileButton = UIButton()
         profileButton.setTitle("Profile", for: .normal)
         profileButton.setTitleColor(.link, for: .normal)
-        profileButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        profileButton.addTarget(self, action: #selector(didTapProfileButton), for: .touchUpInside)
         return profileButton
     }()
+    
+//    private let addButton: UIButton = {
+//        let addButton = UIButton()
+//        addButton.setTitle("+", for: .normal)
+//        addButton.setTitleColor(.link, for: .normal)
+//        //addButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+//        addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+//        return addButton
+//    }()
     
     private let tableview: UITableView = {
         let tableView = UITableView()
@@ -49,10 +71,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor(red: 223/255.0, green: 239/255.0, blue: 199/255.0, alpha: 1)
         tableview.dataSource = self
         tableview.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
         view.addSubview(profileButton)
         view.addSubview(tableview)
         
@@ -72,16 +94,24 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             tableview.topAnchor.constraint(equalTo: profileButton.bottomAnchor, constant: 10),
             tableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            // button constraints
+            // Profile button constraints
             profileButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            profileButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            profileButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
         ])
 
     }
     
-    @objc private func didTapButton() {
+    @objc private func didTapProfileButton() {
         let vc = ViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func didTapAddButton() {
+        let vc = AddViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
         
 }
+
+
