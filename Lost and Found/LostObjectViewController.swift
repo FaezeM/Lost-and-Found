@@ -43,7 +43,7 @@ class LostObjectViewController: UIViewController {
     }()
     
     init(passingItem: Object) {
-        self.imageView.image = passingItem.image
+        self.imageView.image = UIImage(named: passingItem.image)
         self.label.text = passingItem.name
         self.loc.text = passingItem.location
         self.desc.text = passingItem.discription

@@ -45,10 +45,25 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(text: String, locName: String,img: UIImage) {
+    public func configure(text: String, locName: String,img: String) {
         label.text = text
         loc.text = locName
-        image.image = img
+
+        //if let currentImg = UIImage(named: img) {
+            //image.image = currentImg
+        //} else if let currentURL = URL(string: img) {
+        
+        guard let url = URL(string: img) else {
+            return
+        }
+        guard let imgData = NSData(contentsOf: url) else {
+            return
+        }
+        DispatchQueue.main.async {
+            self.image.image = UIImage(data: imgData as Data)
+        }
+        
+        //}
     }
     
     override func prepareForReuse() { //nil the properties for different cells

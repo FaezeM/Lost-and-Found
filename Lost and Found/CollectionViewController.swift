@@ -8,21 +8,19 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
 
-
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Objects.count
-    }
+    var loadedObjects: [Object] = loadObjects() ?? Objects
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // not optional
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
-        let Object = Objects[indexPath.row]
-        cell.configure(text: Object.name, locName: Object.location, img: Object.image)
+        
+        let object = loadedObjects[indexPath.row]
+        
+
+        cell.configure(text: object.name, locName: object.location, img: object.image)
         return cell
     }
     
@@ -38,10 +36,14 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // it will no longer be highlighted
-        let object = Objects[indexPath.row]
+        let object = loadedObjects[indexPath.row]
         let vc = LostObjectViewController(passingItem: object)
         navigationController?.pushViewController(vc, animated: true)
 
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return loadedObjects.count
     }
     
     private let profileButton: UIButton = {
@@ -71,6 +73,13 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !UserDefaults.standard.bool(forKey: "didSaveObjects") {
+            saveObjects(objects: Objects)
+            UserDefaults.standard.set(true, forKey: "didSaveObjects")
+        }
+
+        
         view.backgroundColor = UIColor(red: 223/255.0, green: 239/255.0, blue: 199/255.0, alpha: 1)
         tableview.dataSource = self
         tableview.delegate = self
@@ -111,6 +120,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let vc = AddViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+        
         
 }
 

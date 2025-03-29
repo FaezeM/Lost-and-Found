@@ -11,6 +11,7 @@ import UIKit
 
 class AddViewController: UIViewController, PHPickerViewControllerDelegate {
     
+    private var picURL: String?
     // func of the PHPicker delegate
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil) // dismiss the viewcontroller
@@ -19,8 +20,40 @@ class AddViewController: UIViewController, PHPickerViewControllerDelegate {
                 guard let image = reading as? UIImage, error == nil else{ // as?: convert to UIImage if possible or return nil
                     return
                 } // guard = if
+                
                 DispatchQueue.main.async { //puprple warning: UIImageView.image must be used from main thread only
                     self?.imageView.image = image // Assign the image to the UIImageView
+                }
+            }
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] url, error in
+                guard let self = self, let url = url, error == nil else {
+                    print("Error loading file URL: \(String(describing: error))")
+                    return
+                }
+                
+                do {
+                    // Create a destination URL in your app's documents directory
+                    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let fileName = url.lastPathComponent
+                    let destinationURL = documentsDirectory.appendingPathComponent(fileName)
+                    
+                    // Remove any existing file
+                    if FileManager.default.fileExists(atPath: destinationURL.path) {
+                        try FileManager.default.removeItem(at: destinationURL)
+                    }
+                    
+                    // Copy the file
+                    try FileManager.default.copyItem(at: url, to: destinationURL)
+                    
+                    // Now you can use destinationURL safely
+                    self.picURL = destinationURL.absoluteString
+                    
+                    // Update UI on main thread if needed
+                    DispatchQueue.main.async {
+                        print("File saved at: \(self.picURL)")
+                    }
+                } catch {
+                    print("Error copying file: \(error)")
                 }
             }
         }
@@ -167,10 +200,10 @@ class AddViewController: UIViewController, PHPickerViewControllerDelegate {
         guard let desc = descTextView.text else {
             return
         }
-        guard let img = imageView.image else {
+        guard let img = picURL else {
             return
         }
-        Objects += [Object(name: name, location: loc, discription: desc, image: img)]
+        addNewObject(object: Object(name: name, location: loc, discription: desc, image: img))
         let vc = TableViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
